@@ -1,6 +1,11 @@
 package mrigor87.votingsystem.model;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -8,16 +13,41 @@ import java.util.Set;
 /**
  * Created by Igor on 08.08.2016.
  */
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
+        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email"),
+})
+
+@Entity
+@Table(name = "users")
 public class User extends NamedEntity {
 
+    public static final String DELETE = "User.delete";
+    public static final String ALL_SORTED = "User.getAllSorted";
+    public static final String BY_EMAIL = "User.getByEmail";
+
+    @Column(name = "email", nullable = false, unique = true)
+    @Email
+    @NotEmpty
     protected String email;
 
+    @Column(name = "password", nullable = false)
+    @NotEmpty
+    @Length(min = 5)
     protected String password;
 
+    @Column(name = "enabled", nullable = false)
     protected boolean enabled = true;
 
+    @Column(name = "registered", nullable = false)
     protected Date registered = new Date();
 
+
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
     protected Set<Role> roles;
 
 

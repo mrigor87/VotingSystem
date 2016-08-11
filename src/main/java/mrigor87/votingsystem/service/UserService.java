@@ -1,13 +1,16 @@
-package mrigor87.votingsystem.servive;
+package mrigor87.votingsystem.service;
 
 import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.util.exception.NotFoundException;
 
+
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by Igor on 08.08.2016.
  */
+
 public interface UserService {
     User save(User user);
 
@@ -17,7 +20,7 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    List<User> getAll();
+    Collection<User> getAll();
 
     void update(User user);
 

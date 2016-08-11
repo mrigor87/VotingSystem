@@ -11,5 +11,5 @@ public interface UserRepository {
     public User get(Integer id);
     public  boolean delete(Integer id);
     public  User  save(User user);
-    public Collection<User> getAll(User user);
+    public Collection<User> getAll();
 }

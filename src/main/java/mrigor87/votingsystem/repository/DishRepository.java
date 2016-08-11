@@ -8,9 +8,9 @@ import java.util.Collection;
  * Created by Igor on 08.08.2016.
  */
 public interface DishRepository {
-    Dish get (Integer id, Integer userId);
-    boolean delete (Integer id, Integer userId);
-    Dish save (Dish dish, Integer userid);
-    Collection<Dish>getAll(Integer userid);
+    Dish get (Integer id, Integer restaurantId);
+    boolean delete (Integer id, Integer restaurantId);
+    Dish save (Dish dish, Integer restaurantId);
+    Collection<Dish>getAll(Integer restaurantId);
 
 }

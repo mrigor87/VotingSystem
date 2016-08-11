@@ -8,5 +8,5 @@ import mrigor87.votingsystem.model.Restaurant;
 public interface RestaurantRepository {
     Restaurant get(Integer id);
     boolean delete(Integer id);
-    Restaurant save(Integer id);
+    Restaurant save(Restaurant restaurant);
 }
