@@ -1,13 +1,17 @@
 package mrigor87.votingsystem.repository.jpa;
 
 import mrigor87.votingsystem.model.Dish;
+import mrigor87.votingsystem.model.Restaurant;
+import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.repository.DishRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Igor on 11.08.2016.
@@ -18,24 +22,38 @@ public class JpaDishRepositoryImpl implements DishRepository {
     EntityManager em;
 
     @Override
-    public Dish get(Integer id, Integer userId) {
-        return em.find(Dish.class,id);
+    public Dish get(int id, int restaurantId) {
+        List<Dish> menu = em.createNamedQuery(Dish.GET).setParameter("id", id)
+                .setParameter("restaurantId", id)
+                .getResultList();
+        return DataAccessUtils.singleResult(menu);
     }
 
     @Override
-    public boolean delete(Integer id, Integer userId) {
+    public boolean delete(int id, int restaurantId) {
         return
-                em.createNamedQuery(Dish.DELETE,Dish.class).setParameter(1,id).executeUpdate()!=0;
+                em.createNamedQuery(Dish.DELETE, Dish.class).setParameter("id", id)
+                        .setParameter("restaurantid", restaurantId)
+                        .executeUpdate() != 0;
     }
 
     @Override
     @Transactional
-    public Dish save(Dish dish, Integer userid) {
-        return null;
+    public Dish save(Dish dish, int restaurantId) {
+        if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
+            return null;
+        }
+        Restaurant restaurant=em.getReference(Restaurant.class,restaurantId);
+        dish.setRestaurant(restaurant);
+        if (dish.isNew()){
+            em.persist(dish);
+            return dish;
+        }
+        return em.merge(dish);
     }
 
     @Override
-    public Collection<Dish> getAll(Integer userid) {
+    public Collection<Dish> getAll(int restaurantId) {
         return null;
     }
 }

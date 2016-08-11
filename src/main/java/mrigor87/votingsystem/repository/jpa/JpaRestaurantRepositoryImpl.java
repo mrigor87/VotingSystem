@@ -18,13 +18,13 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     EntityManager em;
 
     @Override
-    public Restaurant get(Integer id) {
+    public Restaurant get(int id) {
         return em.find(Restaurant.class, id);
     }
 
     @Transactional
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
         return em.createNamedQuery(User.DELETE, Restaurant.class).setParameter("id", id).executeUpdate() != 0;
         //return em.re;
     }

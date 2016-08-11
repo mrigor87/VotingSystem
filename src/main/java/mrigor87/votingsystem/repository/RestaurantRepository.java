@@ -6,7 +6,7 @@ import mrigor87.votingsystem.model.Restaurant;
  * Created by Igor on 08.08.2016.
  */
 public interface RestaurantRepository {
-    Restaurant get(Integer id);
-    boolean delete(Integer id);
+    Restaurant get(int id);
+    boolean delete(int id);
     Restaurant save(Restaurant restaurant);
 }

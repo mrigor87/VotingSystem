@@ -18,12 +18,12 @@ public class JpaUserRepositoryImpl implements UserRepository {
     EntityManager em;
 
     @Override
-    public User get(Integer id) {
+    public User get(int id) {
         return em.find(User.class,id);
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
 
         return em.createNamedQuery(User.DELETE).setParameter(1,id).executeUpdate()!=0;
     }
