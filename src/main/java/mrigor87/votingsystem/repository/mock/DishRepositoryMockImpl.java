@@ -13,19 +13,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DishRepositoryMockImpl implements DishRepository {
     Map<Integer,Map<Integer,Dish>>repository=new ConcurrentHashMap<>();
     @Override
-    public Dish get(Integer id, Integer restaurantId) {
+    public Dish get(int id, int restaurantId) {
         Map<Integer,Dish> menu=repository.get(restaurantId);
         return menu==null?null:menu.get(id);
     }
 
     @Override
-    public boolean delete(Integer id, Integer restaurantId) {
+    public boolean delete(int id, int restaurantId) {
         Map<Integer,Dish> menu=repository.get(restaurantId);
         return  (menu!=null)&&(menu.remove(id)!=null);
     }
 
     @Override
-    public Dish save(Dish dish, Integer restaurantId) {
+    public Dish save(Dish dish, int restaurantId) {
         Integer dishid=dish.getId();
         if (dishid==null){
 
@@ -34,7 +34,7 @@ public class DishRepositoryMockImpl implements DishRepository {
     }
 
     @Override
-    public Collection<Dish> getAll(Integer restaurantId) {
+    public Collection<Dish> getAll(int restaurantId) {
         return null;
     }
 }

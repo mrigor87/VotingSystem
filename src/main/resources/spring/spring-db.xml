@@ -13,10 +13,12 @@
 
     <context:component-scan base-package="mrigor87.votingsystem.**.repository.jpa"/>
 
+<!--
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
-        <jdbc:script location="classpath:db/initDB.sql"/>
+&lt;!&ndash;        <jdbc:script location="classpath:db/initDB.sql"/>&ndash;&gt;
         <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
     </jdbc:initialize-database>
+-->
 
     <!--no pooling-->
     <bean id="dataSource"

@@ -14,12 +14,12 @@ public class RestaurantMockImpl implements RestaurantRepository {
     Map<Integer,Restaurant> repository =new ConcurrentHashMap<>();
     AtomicInteger counter=new AtomicInteger(0);
     @Override
-    public Restaurant get(Integer id) {
+    public Restaurant get(int id) {
         return repository.get(id);
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
         return repository.remove(get(id))!=null;
     }
 

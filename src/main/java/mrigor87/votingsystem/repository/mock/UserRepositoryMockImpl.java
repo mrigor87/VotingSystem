@@ -15,12 +15,12 @@ public class UserRepositoryMockImpl implements UserRepository {
     Map<Integer,User> repository =new ConcurrentHashMap<>();
     AtomicInteger counter=new AtomicInteger(0);
     @Override
-    public User get(Integer id) {
+    public User get(int id) {
         return repository.get(id);
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
         return repository.remove(id)!=null;
     }
 
@@ -33,7 +33,7 @@ public class UserRepositoryMockImpl implements UserRepository {
     }
 
     @Override
-    public Collection<User> getAll(User user) {
+    public Collection<User> getAll() {
         return repository.values();
     }
 }
