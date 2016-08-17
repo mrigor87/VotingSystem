@@ -1,4 +1,4 @@
-package mrigor87.votingsystem.repository.matcher;
+package mrigor87.votingsystem.matcher;
 
 import org.junit.Assert;
 

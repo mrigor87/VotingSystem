@@ -23,17 +23,18 @@ public class JpaDishRepositoryImpl implements DishRepository {
 
     @Override
     public Dish get(int id, int restaurantId) {
-        List<Dish> menu = em.createNamedQuery(Dish.GET).setParameter("id", id)
+        List<Dish> menu = em.createNamedQuery(Dish.GET,Dish.class).setParameter("id", id)
                 .setParameter("restaurantId", id)
                 .getResultList();
         return DataAccessUtils.singleResult(menu);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id, int restaurantId) {
         return
-                em.createNamedQuery(Dish.DELETE, Dish.class).setParameter("id", id)
-                        .setParameter("restaurantid", restaurantId)
+                em.createNamedQuery(Dish.DELETE).setParameter("id", id)
+                        .setParameter("restaurantId", restaurantId)
                         .executeUpdate() != 0;
     }
 
@@ -54,6 +55,6 @@ public class JpaDishRepositoryImpl implements DishRepository {
 
     @Override
     public Collection<Dish> getAll(int restaurantId) {
-        return null;
+        return em.createNamedQuery(Dish.ALL,Dish.class).setParameter(1,restaurantId).getResultList();
     }
 }

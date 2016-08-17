@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
 
 /**
  * Created by Igor on 11.08.2016.
@@ -25,8 +26,8 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Transactional
     @Override
     public boolean delete(int id) {
-        return em.createNamedQuery(User.DELETE, Restaurant.class).setParameter("id", id).executeUpdate() != 0;
-        //return em.re;
+
+        return em.createNamedQuery(Restaurant.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 
     @Transactional
@@ -39,5 +40,10 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
         } else {
             return em.merge(restaurant);
         }
+    }
+
+    @Override
+    public Collection<Restaurant> getAll() {
+        return em.createNamedQuery(Restaurant.GET_ALL,Restaurant.class).getResultList();
     }
 }

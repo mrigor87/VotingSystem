@@ -7,6 +7,8 @@ import mrigor87.votingsystem.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 /**
  * Created by Igor on 11.08.2016.
  */
@@ -33,5 +35,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void update(Restaurant restaurant) {
         repository.save(restaurant);
+    }
+
+    @Override
+    public Collection<Restaurant> getAll() {
+        return repository.getAll();
     }
 }

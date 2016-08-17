@@ -3,6 +3,7 @@ package mrigor87.votingsystem.repository.mock;
 import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.repository.RestaurantRepository;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,11 +24,17 @@ public class RestaurantMockImpl implements RestaurantRepository {
         return repository.remove(get(id))!=null;
     }
 
+
     @Override
     public Restaurant save(Restaurant restaurant) {
         if (restaurant.isNew()){
            return repository.put(counter.incrementAndGet(),restaurant);
         }
         return repository.put(restaurant.getId(),restaurant);
+    }
+
+    @Override
+    public Collection<Restaurant> getAll() {
+        return null;
     }
 }
