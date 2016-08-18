@@ -13,6 +13,8 @@
 
     <context:component-scan base-package="mrigor87.votingsystem.**.repository.jpa"/>
 
+
+
 <!--
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
 &lt;!&ndash;        <jdbc:script location="classpath:db/initDB.sql"/>&ndash;&gt;

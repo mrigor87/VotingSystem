@@ -3,6 +3,7 @@ package mrigor87.votingsystem.repository.jpa;
 import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.repository.UserRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public User get(int id) {
+
         return em.find(User.class,id);
     }
 
@@ -27,7 +29,7 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
         return em.createNamedQuery(User.DELETE).setParameter(1,id).executeUpdate()!=0;
     }
-
+    @Transactional
     @Override
     public User save(User user) {
         if (user.isNew()){

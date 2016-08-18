@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
  * Created by Igor on 08.08.2016.
  */
 @NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=?1"),
         @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email"),
 })
@@ -50,7 +51,17 @@ public class User extends NamedEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     protected Set<Role> roles;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "voterestaurantid", nullable = false)
+    protected Restaurant restaurant;
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     public User() {
     }
@@ -63,6 +74,16 @@ public class User extends NamedEntity {
         this.enabled = enabled;
         this.roles = roles;
     }
+
+    public User(Integer id, String name, String email, String password,Role role, Role... roles ) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.enabled = true;
+        this.roles = EnumSet.of(role,roles);
+    }
+
+
 
     public String getEmail() {
         return email;

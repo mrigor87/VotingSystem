@@ -1,5 +1,6 @@
 package mrigor87.votingsystem.service;
 
+import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.util.exception.NotFoundException;
 
@@ -23,5 +24,7 @@ public interface UserService {
     Collection<User> getAll();
 
     void update(User user);
+
+    boolean setVote(int id, Restaurant restaurant);
 
 }

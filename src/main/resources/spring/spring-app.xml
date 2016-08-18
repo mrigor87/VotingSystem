@@ -16,6 +16,5 @@
 
     <context:component-scan base-package="mrigor87.votingsystem.**.service"/>
 
-    <context:component-scan base-package="mrigor87.votingsystem.**.web"/>
 
 </beans>
