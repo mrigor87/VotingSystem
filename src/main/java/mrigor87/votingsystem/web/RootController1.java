@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * User: gkislin
  * Date: 22.08.2014
  */
-@Controller
+//@Controller
 public class RootController1 {
 
 
@@ -23,5 +23,8 @@ public class RootController1 {
         return "index";
     }
 
-
+/*    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String root() {
+        return "index";
+    }*/
 }
