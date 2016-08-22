@@ -25,6 +25,6 @@ public interface UserService {
 
     void update(User user);
 
-    boolean setVote(int id, Restaurant restaurant);
+    boolean setVote(int id, int restaurantId);
 
 }

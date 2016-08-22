@@ -36,4 +36,9 @@ public class UserRepositoryMockImpl implements UserRepository {
     public Collection<User> getAll() {
         return repository.values();
     }
+
+    @Override
+    public boolean setVote(int userId, int restaurantId) {
+        return false;
+    }
 }

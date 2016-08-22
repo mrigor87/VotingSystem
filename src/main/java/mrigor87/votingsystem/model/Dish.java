@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Igor on 08.08.2016.
  */
 @NamedQueries({
-          @NamedQuery(name = Dish.DELETE,     query = "DELETE FROM Dish d     WHERE d.id=?1 AND d.restaurant.id=?2"),
+          @NamedQuery(name = Dish.DELETE,     query = "DELETE FROM Dish d     WHERE d.id=?1"),
        // @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal m WHERE m.id=:id AND m.user      .id=:userId"),
 
         @NamedQuery(name = Dish.GET, query = "SELECT d FROM Dish d WHERE d.id=:id AND d.restaurant.id=:restaurantId"),

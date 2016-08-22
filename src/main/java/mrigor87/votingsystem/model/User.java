@@ -51,7 +51,7 @@ public class User extends NamedEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     protected Set<Role> roles;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "voterestaurantid", nullable = false)
     protected Restaurant restaurant;
 
@@ -65,6 +65,7 @@ public class User extends NamedEntity {
 
     public User() {
     }
+
 
 
     public User(Integer id, String name, String email, String password, boolean enabled, Set<Role> roles) {
@@ -121,6 +122,7 @@ public class User extends NamedEntity {
         return password;
     }
 
+
     @Override
     public String toString() {
         return "User (" +
@@ -131,4 +133,6 @@ public class User extends NamedEntity {
                 ", roles=" + roles +
                 ')';
     }
+
+
 }

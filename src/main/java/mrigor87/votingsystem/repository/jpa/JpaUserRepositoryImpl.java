@@ -1,11 +1,12 @@
 package mrigor87.votingsystem.repository.jpa;
 
+import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.repository.UserRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.soap.SOAPBinding;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
@@ -36,6 +37,7 @@ public class JpaUserRepositoryImpl implements UserRepository {
             em.persist(user);
             return user;
         }
+        User user1= em.find(User.class,user.getId());
         return em.merge(user);
     }
 
@@ -43,5 +45,17 @@ public class JpaUserRepositoryImpl implements UserRepository {
     public Collection<User> getAll() {
 
         return em.createNamedQuery(User.ALL_SORTED,User.class).getResultList();
+    }
+
+    @Override
+    @Transactional
+    public boolean setVote(int userId, int restaurantId) {
+
+        User user=em.getReference(User.class,userId);
+        Restaurant restaurant=em.getReference(Restaurant.class,restaurantId);
+        user.setRestaurant(restaurant);
+
+        em.merge(user);
+        return true;
     }
 }

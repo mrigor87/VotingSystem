@@ -37,6 +37,8 @@ public class DishTestData {
     public static final List<Dish> DISHES= Arrays.asList(DISH1,DISH2,DISH3,DISH4,DISH5,DISH6);
     public static final Dish NEW_DISH=new Dish(null,"new Dish",90);
     public static Dish getUpdated() {
-        return new Dish(DISH2.getId(),  "update блюдо",50.11);
+        Dish dish=new Dish(DISH2.getId(),  "update блюдо",50.11);
+        dish.setRestaurant(RESTAURANT1);
+        return dish;
     }
 }

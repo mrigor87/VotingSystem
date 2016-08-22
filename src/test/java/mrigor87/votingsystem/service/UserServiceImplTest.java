@@ -1,6 +1,8 @@
 package mrigor87.votingsystem.service;
 
+import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.model.User;
+import mrigor87.votingsystem.web.RestaurantTestData;
 import mrigor87.votingsystem.web.UserTestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,8 +44,8 @@ public class UserServiceImplTest {
 
     @Test
     public void get() throws Exception {
-      //  User user = service.get(ADMIN.getId());
-       // MATCHER.assertEquals(service.get(100010),ADMIN);
+        User user = service.get(ADMIN.getId());
+        MATCHER.assertEquals(service.get(100010),ADMIN);
     }
 
 
@@ -61,7 +63,11 @@ public class UserServiceImplTest {
 
     @Test
     public void setVote() throws Exception {
-
+        User user=UserTestData.USER;
+        Restaurant restaurant= RestaurantTestData.RESTAURANT1;
+        user.setRestaurant(restaurant);
+        service.setVote(user.getId(),restaurant.getId());
+       RestaurantTestData. MATCHER.assertEquals(user.getRestaurant(),restaurant);
     }
 
 }

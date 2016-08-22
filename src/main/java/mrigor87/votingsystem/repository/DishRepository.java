@@ -9,8 +9,8 @@ import java.util.Collection;
  */
 public interface DishRepository {
     Dish get (int id, int restaurantId);
-    boolean delete (int id, int restaurantId);
-    Dish save (Dish dish, int restaurantId);
+    boolean delete (int id);
+    Dish save (Dish dish);
     Collection<Dish>getAll(int restaurantId);
 
 }

@@ -36,14 +36,14 @@ public class DishServiceImplTest {
 
     @Test
     public void save() throws Exception {
-        service.save(getUpdated(),RESTAURANT1.getId());
+        service.save(getUpdated());
         MATCHER.assertCollectionEquals(service.getAll(RESTAURANT1.getId()),
                 Arrays.asList(DISH1,DISH3,getUpdated()));
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(DISH1.getId(), RESTAURANT1.getId());
+        service.delete(DISH1.getId());
         MATCHER.assertCollectionEquals(service.getAll(RESTAURANT1.getId()),
                 Arrays.asList(DISH2,DISH3));
     }

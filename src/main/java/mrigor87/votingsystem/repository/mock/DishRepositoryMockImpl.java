@@ -19,6 +19,16 @@ public class DishRepositoryMockImpl implements DishRepository {
     }
 
     @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public Dish save(Dish dish) {
+        return null;
+    }
+
+/*    @Override
     public boolean delete(int id, int restaurantId) {
         Map<Integer,Dish> menu=repository.get(restaurantId);
         return  (menu!=null)&&(menu.remove(id)!=null);
@@ -31,7 +41,7 @@ public class DishRepositoryMockImpl implements DishRepository {
 
         }
         return null;
-    }
+    }*/
 
     @Override
     public Collection<Dish> getAll(int restaurantId) {

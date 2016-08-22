@@ -33,26 +33,28 @@ public class JpaDishRepositoryImpl implements DishRepository {
 
     @Transactional
     @Override
-    public boolean delete(int id, int restaurantId) {
+    public boolean delete(int id) {
         return
                 em.createNamedQuery(Dish.DELETE)
                         .setParameter(1, id)
-                        .setParameter(2, restaurantId)
+
                         .executeUpdate() != 0;
     }
 
     @Transactional
     @Override
-    public Dish save(Dish dish, int restaurantId) {
-        if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
+    public Dish save(Dish dish) {
+/*        if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
             return null;
         }
         Restaurant restaurant = em.getReference(Restaurant.class, restaurantId);
-        dish.setRestaurant(restaurant);
+        dish.setRestaurant(restaurant);*/
+        Dish dish1=em.find(Dish.class,dish.getId());
         if (dish.isNew()) {
             em.persist(dish);
             return dish;
         }
+  //      dish.setRestaurant(em.getReference(Restaurant.class, dish.getRestaurant().getId()));
         return em.merge(dish);
     }
 

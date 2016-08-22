@@ -1,5 +1,6 @@
 package mrigor87.votingsystem.service;
 
+import mrigor87.votingsystem.model.Dish;
 import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.repository.RestaurantRepository;
 import mrigor87.votingsystem.util.exception.ExceptionUtil;
@@ -40,5 +41,21 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Collection<Restaurant> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public Collection<Dish> getMenu(int id) throws NotFoundException {
+
+        return ExceptionUtil.checkNotFoundWithId(repository.getMenu(id),id);
+    }
+
+    @Override
+    public void setMenu(int id, Collection<Dish> menu) {
+        ExceptionUtil.checkNotFoundWithId(repository.setMenu(id,menu),id);
+    }
+
+    @Override
+    public Restaurant getWithMenu(int id) {
+        return repository.getWithMenu(id);
     }
 }

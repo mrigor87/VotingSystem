@@ -12,4 +12,5 @@ public interface UserRepository {
     public  boolean delete(int id);
     public  User  save(User user);
     public Collection<User> getAll();
+    public boolean setVote(int userId,int restaurantId);
 }

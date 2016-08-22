@@ -1,5 +1,6 @@
 package mrigor87.votingsystem.repository.jpa;
 
+import mrigor87.votingsystem.model.Dish;
 import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.model.User;
 import mrigor87.votingsystem.repository.RestaurantRepository;
@@ -20,6 +21,7 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant get(int id) {
+
         return em.find(Restaurant.class, id);
     }
 
@@ -44,6 +46,27 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Collection<Restaurant> getAll() {
-        return em.createNamedQuery(Restaurant.GET_ALL,Restaurant.class).getResultList();
+        return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
+    }
+
+    @Override
+    public Collection<Dish> getMenu(int id) {
+        Restaurant restaurant = get(id);
+        return restaurant.getMenu();
+    }
+
+    @Override
+    public boolean setMenu(int id, Collection<Dish> menu) {
+        Restaurant restaurant = get(id);
+        if (restaurant != null) {
+            restaurant.setMenu(menu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Restaurant getWithMenu(int id) {
+        return em.createNamedQuery(Restaurant.GET_WITH_MENU, Restaurant.class).setParameter(1,id) .getSingleResult();
     }
 }

@@ -1,5 +1,6 @@
 package mrigor87.votingsystem.repository.mock;
 
+import mrigor87.votingsystem.model.Dish;
 import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.repository.RestaurantRepository;
 
@@ -35,6 +36,21 @@ public class RestaurantMockImpl implements RestaurantRepository {
 
     @Override
     public Collection<Restaurant> getAll() {
+        return null;
+    }
+
+    @Override
+    public Collection<Dish> getMenu(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean setMenu(int id, Collection<Dish> menu) {
+        return false;
+    }
+
+    @Override
+    public Restaurant getWithMenu(int id) {
         return null;
     }
 }

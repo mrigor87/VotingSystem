@@ -10,13 +10,13 @@ import java.util.Collection;
  * Created by Игорь on 14.08.2016.
  */
 public interface DishService {
-    Dish save(Dish dish,int restaurantId);
+    Dish save(Dish dish);
 
-    void delete(int id,int restaurantId) throws NotFoundException;
+    void delete(int id) throws NotFoundException;
 
     Dish get(int id,int restaurantId) throws NotFoundException;
 
     Collection<Dish> getAll(int restaurantId);
 
-    void update(Dish dish,int restaurantId);
+    void update(Dish dish);
 }

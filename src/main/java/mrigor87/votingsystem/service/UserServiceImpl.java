@@ -55,10 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean setVote(int id,Restaurant restaurant) {
-        User user=get(id);
-        user.setRestaurant(restaurant);
-        update(user);
-        return true;
+    public boolean setVote(int id,int restaurantId) {
+        return repository.setVote(id,restaurantId);
+
     }
 }

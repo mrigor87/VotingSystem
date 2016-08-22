@@ -1,7 +1,9 @@
 package mrigor87.votingsystem.service;
 
+import mrigor87.votingsystem.model.Dish;
 import mrigor87.votingsystem.model.Restaurant;
 import mrigor87.votingsystem.util.exception.NotFoundException;
+import mrigor87.votingsystem.web.DishTestData;
 import mrigor87.votingsystem.web.RestaurantTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -72,7 +74,13 @@ public class RestaurantServiceImplTest {
         service.get(8);
 
     }
+    @Test
+    public void getWithMenu(){
+        Restaurant restaurant=service.getWithMenu(100000);
+        Collection<Dish>menu=restaurant.getMenu();
+        DishTestData.MATCHER.assertCollectionEquals(menu,Arrays.asList(DishTestData.DISH1,DishTestData.DISH2,DishTestData.DISH3));
 
+    }
 
 
     @Test
