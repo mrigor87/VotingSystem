@@ -17,14 +17,14 @@ public class DishServiceImpl implements DishService {
     @Autowired
     DishRepository repository;
     @Override
-    public Dish save(Dish dish, int restaurantId) {
+    public Dish save(Dish dish) {
 
-        return repository.save(dish,restaurantId);
+        return repository.save(dish);
     }
 
     @Override
-    public void delete(int id, int restaurantId) throws NotFoundException {
-        ExceptionUtil.checkNotFoundWithId(repository.delete(id,restaurantId),id);
+    public void delete(int id) throws NotFoundException {
+        ExceptionUtil.checkNotFoundWithId(repository.delete(id),id);
 
     }
 
@@ -39,8 +39,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void update(Dish dish, int restaurantId) {
-        ExceptionUtil.checkNotFoundWithId(repository.save(dish,restaurantId),dish.getId());
+    public void update(Dish dish) {
+        ExceptionUtil.checkNotFoundWithId(repository.save(dish),dish.getId());
 
     }
 }
