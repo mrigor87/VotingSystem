@@ -22,14 +22,16 @@ import java.util.Collection;
 @RequestMapping(RestaurantRestController.REST_URL)
 public class RestaurantRestController {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractRestaurantController.class);
-    public static final String REST_URL = "/rest/profile/restaurant";
+    public static final String REST_URL = "/rest/profile/restaurant/";
 
     @Autowired
     RestaurantService service;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
      public Collection<Restaurant> getAll(){
-        return service.getAll();
+        Collection<Restaurant> res=service.getAll();
+        System.out.println(res);
+        return res;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,5 +1,7 @@
 package mrigor87.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -20,7 +22,7 @@ public class Restaurant extends NamedEntity {
     public static final String DELETE = "Restaurant.delete";
     public static final String GET_ALL = "Restaurant.all";
     public static final String GET_WITH_MENU ="Restaurant.withMenu";
-
+    @JsonIgnore
     @OneToMany(mappedBy="restaurant",fetch=FetchType.LAZY,targetEntity = Dish.class)
     private Collection<Dish> menu;
 
