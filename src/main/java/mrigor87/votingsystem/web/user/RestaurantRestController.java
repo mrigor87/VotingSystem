@@ -30,7 +30,7 @@ public class RestaurantRestController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
      public Collection<Restaurant> getAll(){
         Collection<Restaurant> res=service.getAll();
-        System.out.println(res);
+        LOG.info("get all restaurant");
         return res;
     }
 
