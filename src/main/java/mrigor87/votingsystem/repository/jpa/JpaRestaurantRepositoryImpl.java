@@ -59,7 +59,8 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Transactional
     @Override
     public boolean setMenu(int id, Collection<Dish> menu) {
-        Restaurant restaurant = get(id);
+        Restaurant restaurant = getWithMenu(id);
+        restaurant.getMenu().forEach(r->em.remove(r));
         if (restaurant != null) {
             restaurant.setMenu(menu);
            // menu.forEach();
