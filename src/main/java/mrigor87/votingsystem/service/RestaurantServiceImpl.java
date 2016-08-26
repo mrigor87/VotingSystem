@@ -34,7 +34,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void update(Restaurant restaurant) {
+    public void update(Restaurant restaurant,int id) {
+        restaurant.setId(id);
         repository.save(restaurant);
     }
 

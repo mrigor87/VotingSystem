@@ -37,7 +37,7 @@ public abstract class AbstractRestaurantController {
     }
     public void update(Restaurant restaurant) {
         LOG.info("update Restaurant {}", restaurant);
-        service.update(restaurant);
+       // service.update(restaurant);
     }
 
     public Restaurant create(Restaurant restaurant) {

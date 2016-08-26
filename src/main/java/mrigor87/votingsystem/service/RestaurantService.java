@@ -21,7 +21,7 @@ public interface RestaurantService {
     Collection<Dish> getMenu(int id)  throws NotFoundException;
     void setMenu(int id, Collection<Dish>menu);
 
-    void update(Restaurant user);
+    void update(Restaurant user,int id);
 
     Restaurant getWithMenu(int id);
 

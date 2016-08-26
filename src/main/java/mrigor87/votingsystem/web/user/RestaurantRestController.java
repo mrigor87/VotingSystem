@@ -21,7 +21,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping(RestaurantRestController.REST_URL)
 public class RestaurantRestController {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractRestaurantController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RestaurantRestController.class);
     public static final String REST_URL = "/rest/profile/restaurant/";
 
     @Autowired
@@ -37,7 +37,7 @@ public class RestaurantRestController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Restaurant getRestaurant(@PathVariable("id") int id) {
         LOG.info("get restaurant {}",id);
-        return service.get(id);
+        return service.getWithMenu(id);
     }
     @RequestMapping(value = "/{id}/menu", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Dish> getMenu(@PathVariable("id") int id){

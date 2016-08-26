@@ -10,8 +10,8 @@ import java.util.Collection;
  */
 @NamedQueries({
         @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM    Restaurant r WHERE r.id=:id "),
-      //  @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT r FROM Restaurant r ORDER BY r.name"),
-        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu ORDER BY r.name"),
+        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT r FROM Restaurant r ORDER BY r.name"),
+       // @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu ORDER BY r.name"),
         @NamedQuery(name = Restaurant.GET_WITH_MENU, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu WHERE r.id=?1 ORDER BY r.name")
 })
 

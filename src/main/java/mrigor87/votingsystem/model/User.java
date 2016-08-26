@@ -1,6 +1,7 @@
 package mrigor87.votingsystem.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -50,6 +51,7 @@ public class User extends NamedEntity {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     protected Set<Role> roles;
+
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "voterestaurantid", nullable = false)

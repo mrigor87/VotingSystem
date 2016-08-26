@@ -1,5 +1,7 @@
 package mrigor87.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -22,6 +24,7 @@ public class Dish extends NamedEntity {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurantId", nullable = false)
     private Restaurant restaurant;

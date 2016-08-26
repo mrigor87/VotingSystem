@@ -21,7 +21,8 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Restaurant get(int id) {
-
+        //  return em.createNamedQuery(Restaurant.).setParameter("id", id).executeUpdate() != 0;
+        Restaurant restaurant = em.find(Restaurant.class, id);
         return em.find(Restaurant.class, id);
     }
 
@@ -51,22 +52,34 @@ public class JpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public Collection<Dish> getMenu(int id) {
-        Restaurant restaurant = get(id);
+        Restaurant restaurant = getWithMenu(id);
         return restaurant.getMenu();
     }
 
+    @Transactional
     @Override
     public boolean setMenu(int id, Collection<Dish> menu) {
         Restaurant restaurant = get(id);
         if (restaurant != null) {
             restaurant.setMenu(menu);
+           // menu.forEach();
+            for (Dish dish : menu) {
+                dish.setRestaurant(restaurant);
+                em.merge(dish);
+            }
+            //menu.forEach((dish) -> em.merge(dish) );
+         //   em.merge(restaurant);
             return true;
         }
+        return false;
+    }
+    @Transactional
+    public boolean deleteMenu(int id){
         return false;
     }
 
     @Override
     public Restaurant getWithMenu(int id) {
-        return em.createNamedQuery(Restaurant.GET_WITH_MENU, Restaurant.class).setParameter(1,id) .getSingleResult();
+        return em.createNamedQuery(Restaurant.GET_WITH_MENU, Restaurant.class).setParameter(1, id).getSingleResult();
     }
 }
