@@ -38,6 +38,7 @@ public class RestaurantAdminRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
+
         service.delete(id);
     }
 
@@ -48,12 +49,14 @@ public class RestaurantAdminRestController {
 
     @RequestMapping(value = "/{id}/menu", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Dish> getMenu(@PathVariable("id") int id) {
+        LOG.info("get menu for {} restaurantId", id);
         return service.getMenu(id);
     }
 
     @RequestMapping(value = "/{id}/menu", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void setMenu(@PathVariable("id") int id, @RequestBody Collection<Dish> menu) {
-    service.setMenu(id,menu);
+        LOG.info("set menu {} for {} restaurantId", menu,id);
+        service.setMenu(id,menu);
     }
 
 }
